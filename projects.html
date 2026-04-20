@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | Matilda Ouko</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    nav {
+      background: #0077b6;
+      padding: 15px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #023e8a;
+    }
+
+    .box {
+      background: white;
+      padding: 25px;
+      margin-top: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+
+    .box:hover {
+      transform: translateY(-5px);
+    }
+
+    img {
+      width: 100%;
+      margin-top: 10px;
+      border-radius: 8px;
+    }
+
+    pre {
+      background: #eee;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+
+    hr {
+      margin: 50px 0;
+      border: none;
+      height: 1px;
+      background: #ccc;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="projects.html">Projects</a>
+</nav>
+
+<section>
+
+  <h1>Project Portfolio</h1>
+  <p style="text-align:center;">
+    Detailed breakdown of networking and cybersecurity projects demonstrating practical skills in analysis and automation.
+  </p>
+
+  <!-- ================= PROJECT 1 ================= -->
+  <div class="box">
+    <h2>Network Threat Analysis and Detection</h2>
+
+    <p><strong>Objective:</strong><br>
+    Simulate network activity through a port scan and analyse captured traffic using Wireshark in order to identify reconnaissance behaviour.
+    </p>
+
+    <p><strong>Traffic Capture:</strong></p>
+    <img src="capture-start.png">
+
+    <p><strong>Tools Used:</strong></p>
+    <ul>
+      <li>Nmap</li>
+      <li>Wireshark</li>
+      <li>Local machine (Kali Linux)</li>
+    </ul>
+
+    <p><strong>Methodology:</strong></p>
+    <ul>
+      <li>Launched Wireshark and configured it to capture packets on the active network interface</li>
+      <li>Performed a TCP SYN (stealth) scan using: <code>nmap -sS localhost</code></li>
+      <li>Applied filter to isolate SYN packets</li>
+    </ul>
+
+    <p><strong>Attack Simulation:</strong></p>
+    <img src="nmap-scan.png">
+
+    <p><strong>Proof of Concept:</strong></p>
+    <p>Applied filter <code>tcp.flags.syn == 1 && tcp.flags.ack == 0</code> to isolate SYN packets.</p>
+
+    <p>
+      Traffic from <strong>192.168.93.128</strong> shows repeated SYN requests to multiple destinations over port 443,
+      indicating incomplete TCP handshakes consistent with port scanning.
+    </p>
+
+    <p><strong>Filtered Traffic Analysis:</strong></p>
+    <img src="port-scan-analysis.png">
+
+    <p><strong>Explanation:</strong></p>
+    <p>
+      This behaviour demonstrates reconnaissance activity where a system scans multiple hosts to identify open ports and services.
+    </p>
+  </div>
+
+  <hr>
+
+  <!-- ================= PROJECT 2 ================= -->
+  <div class="box">
+    <h2>Automated Lab Analysis</h2>
+
+    <p><strong>Objective:</strong><br>
+    Automate the analysis of log data to reduce manual effort and quickly identify important events.
+    </p>
+
+    <p><strong>Raw Log Data:</strong></p>
+    <img src="lab-log.png">
+
+    <p><strong>Problem:</strong><br>
+    Manual analysis of logs is time-consuming and inefficient.
+    </p>
+
+    <p><strong>Approach:</strong></p>
+    <ul>
+      <li>Developed Python script to process log files</li>
+      <li>Filtered entries using keywords (ERROR, WARNING)</li>
+      <li>Generated structured output</li>
+    </ul>
+
+    <p><strong>Tools Used:</strong></p>
+    <ul>
+      <li>Python</li>
+    </ul>
+
+    <p><strong>Automation Script:</strong></p>
+    <img src="analyze-script.png">
+
+    <p><strong>Proof of Concept:</strong></p>
+
+    <pre>
+for line in lines:
+    if "ERROR" in line:
+        errors.append(line)
+    elif "WARNING" in line:
+        warnings.append(line)
+    </pre>
+
+    <p>The script successfully identified:</p>
+    <ul>
+      <li>Failed login attempts</li>
+      <li>Connection timeouts</li>
+      <li>High memory usage warnings</li>
+    </ul>
+
+    <p><strong>Script Output:</strong></p>
+    <img src="script-output.png">
+
+    <p><strong>Security Insight:</strong></p>
+    <p>
+      Failed login attempts may indicate brute-force attacks, demonstrating how automation supports threat detection.
+    </p>
+
+    <p><strong>Results:</strong></p>
+    <ul>
+      <li>Reduced analysis time</li>
+      <li>Improved accuracy</li>
+      <li>Faster detection of issues</li>
+    </ul>
+
+    <p><strong>What I Learned:</strong></p>
+    <ul>
+      <li>Log parsing using Python</li>
+      <li>Automation of repetitive tasks</li>
+      <li>Security relevance of log analysis</li>
+    </ul>
+  </div>
+
+</section>
+
+</body>
+</html>
+
